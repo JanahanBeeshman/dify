@@ -16,7 +16,7 @@ from collections import defaultdict
 from enum import Enum
 from pathlib import Path
 from types import UnionType
-from typing import Any, TypedDict, get_args, get_origin
+from typing import Any, Literal, TypedDict, get_args, get_origin
 
 from pydantic import AliasChoices, BaseModel
 from pydantic.fields import FieldInfo
@@ -74,6 +74,12 @@ class BackendEnvVariableReference(TypedDict):
     code_default: Any | None
     required: bool
     applies_when: str | None
+    deployment: "DeploymentReference"
+
+
+class DeploymentReference(TypedDict):
+    main_example: Literal["required", "omit"]
+    middleware_example: Literal["required", "omit"]
 
 
 class BackendEnvReference(TypedDict):
@@ -207,7 +213,8 @@ def _markdown_code_cell(value: Any | None, *, empty: str = "") -> str:
     text = _markdown_cell(value)
     if not text:
         return empty
-    return f"`{text.replace('`', '\\`')}`"
+    escaped = text.replace("`", "\\`")
+    return f"`{escaped}`"
 
 
 def _render_code_default(value: Any | None) -> str:
@@ -320,6 +327,26 @@ def _provider_applies_when(owner: type[BaseSettings], field_name: str) -> str | 
     return applies_when
 
 
+def _deployment_reference(field_info: FieldInfo) -> DeploymentReference:
+    extra = field_info.json_schema_extra if isinstance(field_info.json_schema_extra, dict) else {}
+    deployment = extra.get("deployment", {})
+    if deployment is None:
+        deployment = {}
+    if not isinstance(deployment, dict):
+        raise TypeError("Field deployment metadata must be a mapping")
+
+    reference: DeploymentReference = {
+        "main_example": "omit",
+        "middleware_example": "omit",
+    }
+    for key in reference:
+        value = deployment.get(key, reference[key])
+        if value not in {"required", "omit"}:
+            raise ValueError(f"Unsupported deployment metadata {key}={value!r}")
+        reference[key] = value
+    return reference
+
+
 def build_backend_env_reference() -> BackendEnvReference:
     variables: list[BackendEnvVariableReference] = []
 
@@ -341,11 +368,12 @@ def build_backend_env_reference() -> BackendEnvReference:
                 "code_default": None if field_info.is_required() else _serialize_default(field_info.default),
                 "required": field_info.is_required(),
                 "applies_when": _provider_applies_when(owner, field_name),
+                "deployment": _deployment_reference(field_info),
             }
         )
 
     return {
-        "schema_version": "1",
+        "schema_version": "2",
         "artifact_policy": "committed-generated-artifact",
         "authority": {
             "kind": "backend-code-defaults",

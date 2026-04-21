@@ -35,6 +35,10 @@ describe('frontend env reference', () => {
       required: false,
       injection_mode: 'body-dataset',
       dataset_key: 'apiPrefix',
+      deployment: {
+        main_example: 'omit',
+        middleware_example: 'omit',
+      },
     })
   })
 
@@ -55,6 +59,23 @@ describe('frontend env reference', () => {
       required: false,
       injection_mode: 'process-env',
       dataset_key: null,
+      deployment: {
+        main_example: 'omit',
+        middleware_example: 'omit',
+      },
+    })
+  })
+
+  it('should expose deployment metadata defaults in the generated reference', () => {
+    // Arrange
+    const reference = buildFrontendEnvReference()
+
+    // Assert
+    expect(reference.schema_version).toBe('2')
+    expect(reference.variables.every(variable => variable.deployment)).toBe(true)
+    expect(reference.variables.find(variable => variable.name === 'NEXT_PUBLIC_DEPLOY_ENV')?.deployment).toEqual({
+      main_example: 'omit',
+      middleware_example: 'omit',
     })
   })
 

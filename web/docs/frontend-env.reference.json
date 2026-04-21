@@ -1,5 +1,5 @@
 {
-  "schema_version": "1",
+  "schema_version": "2",
   "artifact_policy": "committed-generated-artifact",
   "authority": {
     "kind": "frontend-env-schema",
@@ -19,7 +19,11 @@
       "code_default": false,
       "required": false,
       "injection_mode": "body-dataset",
-      "dataset_key": "allowEmbed"
+      "dataset_key": "allowEmbed",
+      "deployment": {
+        "main_example": "omit",
+        "middleware_example": "omit"
+      }
     },
     {
       "name": "NEXT_PUBLIC_ALLOW_INLINE_STYLES",
@@ -33,7 +37,11 @@
       "code_default": false,
       "required": false,
       "injection_mode": "body-dataset",
-      "dataset_key": "allowInlineStyles"
+      "dataset_key": "allowInlineStyles",
+      "deployment": {
+        "main_example": "omit",
+        "middleware_example": "omit"
+      }
     },
     {
       "name": "NEXT_PUBLIC_ALLOW_UNSAFE_DATA_SCHEME",
@@ -47,7 +55,11 @@
       "code_default": false,
       "required": false,
       "injection_mode": "body-dataset",
-      "dataset_key": "allowUnsafeDataScheme"
+      "dataset_key": "allowUnsafeDataScheme",
+      "deployment": {
+        "main_example": "omit",
+        "middleware_example": "omit"
+      }
     },
     {
       "name": "NEXT_PUBLIC_AMPLITUDE_API_KEY",
@@ -61,7 +73,11 @@
       "code_default": null,
       "required": false,
       "injection_mode": "body-dataset",
-      "dataset_key": "amplitudeApiKey"
+      "dataset_key": "amplitudeApiKey",
+      "deployment": {
+        "main_example": "omit",
+        "middleware_example": "omit"
+      }
     },
     {
       "name": "NEXT_PUBLIC_API_PREFIX",
@@ -75,7 +91,11 @@
       "code_default": null,
       "required": false,
       "injection_mode": "body-dataset",
-      "dataset_key": "apiPrefix"
+      "dataset_key": "apiPrefix",
+      "deployment": {
+        "main_example": "omit",
+        "middleware_example": "omit"
+      }
     },
     {
       "name": "NEXT_PUBLIC_BASE_PATH",
@@ -89,7 +109,11 @@
       "code_default": "",
       "required": false,
       "injection_mode": "body-dataset",
-      "dataset_key": "basePath"
+      "dataset_key": "basePath",
+      "deployment": {
+        "main_example": "omit",
+        "middleware_example": "omit"
+      }
     },
     {
       "name": "NEXT_PUBLIC_BATCH_CONCURRENCY",
@@ -103,7 +127,11 @@
       "code_default": 5,
       "required": false,
       "injection_mode": "body-dataset",
-      "dataset_key": "batchConcurrency"
+      "dataset_key": "batchConcurrency",
+      "deployment": {
+        "main_example": "omit",
+        "middleware_example": "omit"
+      }
     },
     {
       "name": "NEXT_PUBLIC_COOKIE_DOMAIN",
@@ -117,7 +145,11 @@
       "code_default": null,
       "required": false,
       "injection_mode": "body-dataset",
-      "dataset_key": "cookieDomain"
+      "dataset_key": "cookieDomain",
+      "deployment": {
+        "main_example": "omit",
+        "middleware_example": "omit"
+      }
     },
     {
       "name": "NEXT_PUBLIC_CSP_WHITELIST",
@@ -131,7 +163,11 @@
       "code_default": null,
       "required": false,
       "injection_mode": "body-dataset",
-      "dataset_key": "cspWhitelist"
+      "dataset_key": "cspWhitelist",
+      "deployment": {
+        "main_example": "omit",
+        "middleware_example": "omit"
+      }
     },
     {
       "name": "NEXT_PUBLIC_DEPLOY_ENV",
@@ -145,7 +181,11 @@
       "code_default": null,
       "required": false,
       "injection_mode": "body-dataset",
-      "dataset_key": "deployEnv"
+      "dataset_key": "deployEnv",
+      "deployment": {
+        "main_example": "omit",
+        "middleware_example": "omit"
+      }
     },
     {
       "name": "NEXT_PUBLIC_DISABLE_UPLOAD_IMAGE_AS_ICON",
@@ -159,7 +199,11 @@
       "code_default": false,
       "required": false,
       "injection_mode": "body-dataset",
-      "dataset_key": "disableUploadImageAsIcon"
+      "dataset_key": "disableUploadImageAsIcon",
+      "deployment": {
+        "main_example": "omit",
+        "middleware_example": "omit"
+      }
     },
     {
       "name": "NEXT_PUBLIC_EDITION",
@@ -173,7 +217,11 @@
       "code_default": "SELF_HOSTED",
       "required": false,
       "injection_mode": "body-dataset",
-      "dataset_key": "edition"
+      "dataset_key": "edition",
+      "deployment": {
+        "main_example": "omit",
+        "middleware_example": "omit"
+      }
     },
     {
       "name": "NEXT_PUBLIC_ENABLE_SINGLE_DOLLAR_LATEX",
@@ -187,7 +235,11 @@
       "code_default": false,
       "required": false,
       "injection_mode": "body-dataset",
-      "dataset_key": "enableSingleDollarLatex"
+      "dataset_key": "enableSingleDollarLatex",
+      "deployment": {
+        "main_example": "omit",
+        "middleware_example": "omit"
+      }
     },
     {
       "name": "NEXT_PUBLIC_ENABLE_WEBSITE_FIRECRAWL",
@@ -201,7 +253,11 @@
       "code_default": true,
       "required": false,
       "injection_mode": "body-dataset",
-      "dataset_key": "enableWebsiteFirecrawl"
+      "dataset_key": "enableWebsiteFirecrawl",
+      "deployment": {
+        "main_example": "omit",
+        "middleware_example": "omit"
+      }
     },
     {
       "name": "NEXT_PUBLIC_ENABLE_WEBSITE_JINAREADER",
@@ -215,7 +271,11 @@
       "code_default": true,
       "required": false,
       "injection_mode": "body-dataset",
-      "dataset_key": "enableWebsiteJinareader"
+      "dataset_key": "enableWebsiteJinareader",
+      "deployment": {
+        "main_example": "omit",
+        "middleware_example": "omit"
+      }
     },
     {
       "name": "NEXT_PUBLIC_ENABLE_WEBSITE_WATERCRAWL",
@@ -229,7 +289,11 @@
       "code_default": false,
       "required": false,
       "injection_mode": "body-dataset",
-      "dataset_key": "enableWebsiteWatercrawl"
+      "dataset_key": "enableWebsiteWatercrawl",
+      "deployment": {
+        "main_example": "omit",
+        "middleware_example": "omit"
+      }
     },
     {
       "name": "NEXT_PUBLIC_INDEXING_MAX_SEGMENTATION_TOKENS_LENGTH",
@@ -243,7 +307,11 @@
       "code_default": 4000,
       "required": false,
       "injection_mode": "body-dataset",
-      "dataset_key": "indexingMaxSegmentationTokensLength"
+      "dataset_key": "indexingMaxSegmentationTokensLength",
+      "deployment": {
+        "main_example": "omit",
+        "middleware_example": "omit"
+      }
     },
     {
       "name": "NEXT_PUBLIC_IS_MARKETPLACE",
@@ -257,7 +325,11 @@
       "code_default": false,
       "required": false,
       "injection_mode": "body-dataset",
-      "dataset_key": "isMarketplace"
+      "dataset_key": "isMarketplace",
+      "deployment": {
+        "main_example": "omit",
+        "middleware_example": "omit"
+      }
     },
     {
       "name": "NEXT_PUBLIC_LOOP_NODE_MAX_COUNT",
@@ -271,7 +343,11 @@
       "code_default": 100,
       "required": false,
       "injection_mode": "body-dataset",
-      "dataset_key": "loopNodeMaxCount"
+      "dataset_key": "loopNodeMaxCount",
+      "deployment": {
+        "main_example": "omit",
+        "middleware_example": "omit"
+      }
     },
     {
       "name": "NEXT_PUBLIC_MAINTENANCE_NOTICE",
@@ -285,7 +361,11 @@
       "code_default": null,
       "required": false,
       "injection_mode": "body-dataset",
-      "dataset_key": "maintenanceNotice"
+      "dataset_key": "maintenanceNotice",
+      "deployment": {
+        "main_example": "omit",
+        "middleware_example": "omit"
+      }
     },
     {
       "name": "NEXT_PUBLIC_MARKETPLACE_API_PREFIX",
@@ -299,7 +379,11 @@
       "code_default": null,
       "required": false,
       "injection_mode": "body-dataset",
-      "dataset_key": "marketplaceApiPrefix"
+      "dataset_key": "marketplaceApiPrefix",
+      "deployment": {
+        "main_example": "omit",
+        "middleware_example": "omit"
+      }
     },
     {
       "name": "NEXT_PUBLIC_MARKETPLACE_URL_PREFIX",
@@ -313,7 +397,11 @@
       "code_default": null,
       "required": false,
       "injection_mode": "body-dataset",
-      "dataset_key": "marketplaceUrlPrefix"
+      "dataset_key": "marketplaceUrlPrefix",
+      "deployment": {
+        "main_example": "omit",
+        "middleware_example": "omit"
+      }
     },
     {
       "name": "NEXT_PUBLIC_MAX_ITERATIONS_NUM",
@@ -327,7 +415,11 @@
       "code_default": 99,
       "required": false,
       "injection_mode": "body-dataset",
-      "dataset_key": "maxIterationsNum"
+      "dataset_key": "maxIterationsNum",
+      "deployment": {
+        "main_example": "omit",
+        "middleware_example": "omit"
+      }
     },
     {
       "name": "NEXT_PUBLIC_MAX_PARALLEL_LIMIT",
@@ -341,7 +433,11 @@
       "code_default": 10,
       "required": false,
       "injection_mode": "body-dataset",
-      "dataset_key": "maxParallelLimit"
+      "dataset_key": "maxParallelLimit",
+      "deployment": {
+        "main_example": "omit",
+        "middleware_example": "omit"
+      }
     },
     {
       "name": "NEXT_PUBLIC_MAX_TOOLS_NUM",
@@ -355,7 +451,11 @@
       "code_default": 10,
       "required": false,
       "injection_mode": "body-dataset",
-      "dataset_key": "maxToolsNum"
+      "dataset_key": "maxToolsNum",
+      "deployment": {
+        "main_example": "omit",
+        "middleware_example": "omit"
+      }
     },
     {
       "name": "NEXT_PUBLIC_MAX_TREE_DEPTH",
@@ -369,7 +469,11 @@
       "code_default": 50,
       "required": false,
       "injection_mode": "body-dataset",
-      "dataset_key": "maxTreeDepth"
+      "dataset_key": "maxTreeDepth",
+      "deployment": {
+        "main_example": "omit",
+        "middleware_example": "omit"
+      }
     },
     {
       "name": "NEXT_PUBLIC_PUBLIC_API_PREFIX",
@@ -383,7 +487,11 @@
       "code_default": null,
       "required": false,
       "injection_mode": "body-dataset",
-      "dataset_key": "publicApiPrefix"
+      "dataset_key": "publicApiPrefix",
+      "deployment": {
+        "main_example": "omit",
+        "middleware_example": "omit"
+      }
     },
     {
       "name": "NEXT_PUBLIC_SENTRY_DSN",
@@ -397,7 +505,11 @@
       "code_default": null,
       "required": false,
       "injection_mode": "body-dataset",
-      "dataset_key": "sentryDsn"
+      "dataset_key": "sentryDsn",
+      "deployment": {
+        "main_example": "omit",
+        "middleware_example": "omit"
+      }
     },
     {
       "name": "NEXT_PUBLIC_SITE_ABOUT",
@@ -411,7 +523,11 @@
       "code_default": null,
       "required": false,
       "injection_mode": "body-dataset",
-      "dataset_key": "siteAbout"
+      "dataset_key": "siteAbout",
+      "deployment": {
+        "main_example": "omit",
+        "middleware_example": "omit"
+      }
     },
     {
       "name": "NEXT_PUBLIC_SOCKET_URL",
@@ -425,7 +541,11 @@
       "code_default": null,
       "required": false,
       "injection_mode": "body-dataset",
-      "dataset_key": "socketUrl"
+      "dataset_key": "socketUrl",
+      "deployment": {
+        "main_example": "omit",
+        "middleware_example": "omit"
+      }
     },
     {
       "name": "NEXT_PUBLIC_SUPPORT_EMAIL_ADDRESS",
@@ -439,7 +559,11 @@
       "code_default": null,
       "required": false,
       "injection_mode": "body-dataset",
-      "dataset_key": "supportEmailAddress"
+      "dataset_key": "supportEmailAddress",
+      "deployment": {
+        "main_example": "omit",
+        "middleware_example": "omit"
+      }
     },
     {
       "name": "NEXT_PUBLIC_SUPPORT_MAIL_LOGIN",
@@ -453,7 +577,11 @@
       "code_default": false,
       "required": false,
       "injection_mode": "body-dataset",
-      "dataset_key": "supportMailLogin"
+      "dataset_key": "supportMailLogin",
+      "deployment": {
+        "main_example": "omit",
+        "middleware_example": "omit"
+      }
     },
     {
       "name": "NEXT_PUBLIC_TEXT_GENERATION_TIMEOUT_MS",
@@ -467,7 +595,11 @@
       "code_default": 60000,
       "required": false,
       "injection_mode": "body-dataset",
-      "dataset_key": "textGenerationTimeoutMs"
+      "dataset_key": "textGenerationTimeoutMs",
+      "deployment": {
+        "main_example": "omit",
+        "middleware_example": "omit"
+      }
     },
     {
       "name": "NEXT_PUBLIC_TOP_K_MAX_VALUE",
@@ -481,7 +613,11 @@
       "code_default": 10,
       "required": false,
       "injection_mode": "body-dataset",
-      "dataset_key": "topKMaxValue"
+      "dataset_key": "topKMaxValue",
+      "deployment": {
+        "main_example": "omit",
+        "middleware_example": "omit"
+      }
     },
     {
       "name": "NEXT_PUBLIC_UPLOAD_IMAGE_AS_ICON",
@@ -495,7 +631,11 @@
       "code_default": false,
       "required": false,
       "injection_mode": "body-dataset",
-      "dataset_key": "uploadImageAsIcon"
+      "dataset_key": "uploadImageAsIcon",
+      "deployment": {
+        "main_example": "omit",
+        "middleware_example": "omit"
+      }
     },
     {
       "name": "NEXT_PUBLIC_WEB_PREFIX",
@@ -509,7 +649,11 @@
       "code_default": null,
       "required": false,
       "injection_mode": "body-dataset",
-      "dataset_key": "webPrefix"
+      "dataset_key": "webPrefix",
+      "deployment": {
+        "main_example": "omit",
+        "middleware_example": "omit"
+      }
     },
     {
       "name": "NEXT_PUBLIC_ZENDESK_FIELD_ID_EMAIL",
@@ -523,7 +667,11 @@
       "code_default": null,
       "required": false,
       "injection_mode": "body-dataset",
-      "dataset_key": "zendeskFieldIdEmail"
+      "dataset_key": "zendeskFieldIdEmail",
+      "deployment": {
+        "main_example": "omit",
+        "middleware_example": "omit"
+      }
     },
     {
       "name": "NEXT_PUBLIC_ZENDESK_FIELD_ID_ENVIRONMENT",
@@ -537,7 +685,11 @@
       "code_default": null,
       "required": false,
       "injection_mode": "body-dataset",
-      "dataset_key": "zendeskFieldIdEnvironment"
+      "dataset_key": "zendeskFieldIdEnvironment",
+      "deployment": {
+        "main_example": "omit",
+        "middleware_example": "omit"
+      }
     },
     {
       "name": "NEXT_PUBLIC_ZENDESK_FIELD_ID_PLAN",
@@ -551,7 +703,11 @@
       "code_default": null,
       "required": false,
       "injection_mode": "body-dataset",
-      "dataset_key": "zendeskFieldIdPlan"
+      "dataset_key": "zendeskFieldIdPlan",
+      "deployment": {
+        "main_example": "omit",
+        "middleware_example": "omit"
+      }
     },
     {
       "name": "NEXT_PUBLIC_ZENDESK_FIELD_ID_VERSION",
@@ -565,7 +721,11 @@
       "code_default": null,
       "required": false,
       "injection_mode": "body-dataset",
-      "dataset_key": "zendeskFieldIdVersion"
+      "dataset_key": "zendeskFieldIdVersion",
+      "deployment": {
+        "main_example": "omit",
+        "middleware_example": "omit"
+      }
     },
     {
       "name": "NEXT_PUBLIC_ZENDESK_FIELD_ID_WORKSPACE_ID",
@@ -579,7 +739,11 @@
       "code_default": null,
       "required": false,
       "injection_mode": "body-dataset",
-      "dataset_key": "zendeskFieldIdWorkspaceId"
+      "dataset_key": "zendeskFieldIdWorkspaceId",
+      "deployment": {
+        "main_example": "omit",
+        "middleware_example": "omit"
+      }
     },
     {
       "name": "NEXT_PUBLIC_ZENDESK_WIDGET_KEY",
@@ -593,7 +757,11 @@
       "code_default": null,
       "required": false,
       "injection_mode": "body-dataset",
-      "dataset_key": "zendeskWidgetKey"
+      "dataset_key": "zendeskWidgetKey",
+      "deployment": {
+        "main_example": "omit",
+        "middleware_example": "omit"
+      }
     },
     {
       "name": "INDEXING_MAX_SEGMENTATION_TOKENS_LENGTH",
@@ -607,7 +775,11 @@
       "code_default": 4000,
       "required": false,
       "injection_mode": "process-env",
-      "dataset_key": null
+      "dataset_key": null,
+      "deployment": {
+        "main_example": "omit",
+        "middleware_example": "omit"
+      }
     },
     {
       "name": "NEXT_TELEMETRY_DISABLED",
@@ -621,7 +793,11 @@
       "code_default": null,
       "required": false,
       "injection_mode": "process-env",
-      "dataset_key": null
+      "dataset_key": null,
+      "deployment": {
+        "main_example": "omit",
+        "middleware_example": "omit"
+      }
     },
     {
       "name": "PORT",
@@ -635,7 +811,11 @@
       "code_default": 3000,
       "required": false,
       "injection_mode": "process-env",
-      "dataset_key": null
+      "dataset_key": null,
+      "deployment": {
+        "main_example": "omit",
+        "middleware_example": "omit"
+      }
     },
     {
       "name": "TEXT_GENERATION_TIMEOUT_MS",
@@ -649,7 +829,11 @@
       "code_default": 60000,
       "required": false,
       "injection_mode": "process-env",
-      "dataset_key": null
+      "dataset_key": null,
+      "deployment": {
+        "main_example": "omit",
+        "middleware_example": "omit"
+      }
     }
   ]
 }

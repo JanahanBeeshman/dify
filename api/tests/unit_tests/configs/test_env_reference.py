@@ -20,12 +20,15 @@ def test_backend_env_reference_includes_aliases_and_defaults() -> None:
 
     files_url = variables["FILES_URL"]
     redis_host = variables["REDIS_HOST"]
+    secret_key = variables["SECRET_KEY"]
 
     assert "CONSOLE_API_URL" in files_url["accepted_names"]
     assert redis_host["code_default"] == "localhost"
     assert redis_host["group"] == "middleware.cache.redis"
     assert "source_location" not in redis_host
     assert "sensitive" not in redis_host
+    assert secret_key["deployment"] == {"main_example": "required", "middleware_example": "omit"}
+    assert redis_host["deployment"] == {"main_example": "omit", "middleware_example": "omit"}
 
 
 def test_backend_env_reference_excludes_computed_and_nested_fields() -> None:
@@ -245,7 +248,8 @@ def test_backend_env_reference_is_json_serializable() -> None:
     reference = build_backend_env_reference()
     rendered = json.dumps(reference)
 
-    assert '"schema_version": "1"' in rendered
+    assert '"schema_version": "2"' in rendered
     assert '"resolution"' in rendered
+    assert '"deployment"' in rendered
     assert '"source_location"' not in rendered
     assert '"sensitive"' not in rendered

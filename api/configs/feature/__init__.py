@@ -27,6 +27,12 @@ class SecurityConfig(BaseSettings):
         "Make sure you are changing this key for your deployment with a strong key."
         "Generate a strong key using `openssl rand -base64 42` or set via the `SECRET_KEY` environment variable.",
         default="",
+        json_schema_extra={
+            "deployment": {
+                "main_example": "required",
+                "middleware_example": "omit",
+            }
+        },
     )
 
     RESET_PASSWORD_TOKEN_EXPIRY_MINUTES: PositiveInt = Field(

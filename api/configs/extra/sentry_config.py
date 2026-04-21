@@ -1,4 +1,4 @@
-from pydantic import Field, NonNegativeFloat
+from pydantic import AliasChoices, Field, NonNegativeFloat
 from pydantic_settings import BaseSettings
 
 
@@ -11,16 +11,19 @@ class SentryConfig(BaseSettings):
         description="Sentry Data Source Name (DSN)."
         " This is the unique identifier of your Sentry project, used to send events to the correct project.",
         default=None,
+        validation_alias=AliasChoices("SENTRY_DSN", "API_SENTRY_DSN"),
     )
 
     SENTRY_TRACES_SAMPLE_RATE: NonNegativeFloat = Field(
         description="Sample rate for Sentry performance monitoring traces."
         " Value between 0.0 and 1.0, where 1.0 means 100% of traces are sent to Sentry.",
         default=1.0,
+        validation_alias=AliasChoices("SENTRY_TRACES_SAMPLE_RATE", "API_SENTRY_TRACES_SAMPLE_RATE"),
     )
 
     SENTRY_PROFILES_SAMPLE_RATE: NonNegativeFloat = Field(
         description="Sample rate for Sentry profiling."
         " Value between 0.0 and 1.0, where 1.0 means 100% of profiles are sent to Sentry.",
         default=1.0,
+        validation_alias=AliasChoices("SENTRY_PROFILES_SAMPLE_RATE", "API_SENTRY_PROFILES_SAMPLE_RATE"),
     )

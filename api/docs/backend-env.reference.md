@@ -70,9 +70,9 @@ Code defaults are fallback values only. Runtime process environment, remote sett
 
 | Name | Type | Default | Accepted Env Names | Description |
 | --- | --- | --- | --- | --- |
-| `SENTRY_DSN` | `string \| null` | `""` | `SENTRY_DSN` | Sentry Data Source Name (DSN). This is the unique identifier of your Sentry project, used to send events to the correct project. |
-| `SENTRY_PROFILES_SAMPLE_RATE` | `float` | `1.0` | `SENTRY_PROFILES_SAMPLE_RATE` | Sample rate for Sentry profiling. Value between 0.0 and 1.0, where 1.0 means 100% of profiles are sent to Sentry. |
-| `SENTRY_TRACES_SAMPLE_RATE` | `float` | `1.0` | `SENTRY_TRACES_SAMPLE_RATE` | Sample rate for Sentry performance monitoring traces. Value between 0.0 and 1.0, where 1.0 means 100% of traces are sent to Sentry. |
+| `SENTRY_DSN` | `string \| null` | `""` | `SENTRY_DSN, API_SENTRY_DSN` | Sentry Data Source Name (DSN). This is the unique identifier of your Sentry project, used to send events to the correct project. |
+| `SENTRY_PROFILES_SAMPLE_RATE` | `float` | `1.0` | `SENTRY_PROFILES_SAMPLE_RATE, API_SENTRY_PROFILES_SAMPLE_RATE` | Sample rate for Sentry profiling. Value between 0.0 and 1.0, where 1.0 means 100% of profiles are sent to Sentry. |
+| `SENTRY_TRACES_SAMPLE_RATE` | `float` | `1.0` | `SENTRY_TRACES_SAMPLE_RATE, API_SENTRY_TRACES_SAMPLE_RATE` | Sample rate for Sentry performance monitoring traces. Value between 0.0 and 1.0, where 1.0 means 100% of traces are sent to Sentry. |
 
 ## `feature.account`
 

@@ -12,6 +12,12 @@ const markdownOutputPath = path.join(docsRoot, 'frontend-env.reference.md')
  * @typedef {'client' | 'server'} FrontendEnvRuntime
  * @typedef {'browser-public' | 'server-only'} FrontendEnvVisibility
  * @typedef {'body-dataset' | 'process-env'} FrontendEnvInjectionMode
+ * @typedef {'required' | 'omit'} FrontendDeploymentMode
+ *
+ * @typedef {{
+ *   main_example: FrontendDeploymentMode
+ *   middleware_example: FrontendDeploymentMode
+ * }} FrontendDeploymentReference
  *
  * @typedef {{
  *   name: string
@@ -24,6 +30,7 @@ const markdownOutputPath = path.join(docsRoot, 'frontend-env.reference.md')
  *   required: boolean
  *   injection_mode: FrontendEnvInjectionMode
  *   dataset_key: string | null
+ *   deployment: FrontendDeploymentReference
  * }} FrontendEnvVariableReference
  *
  * @typedef {{
@@ -44,6 +51,8 @@ const SERVER_SCHEMA_START = '  server: {'
 const SERVER_SCHEMA_END = '  },\n  client: clientSchema,'
 const RUNTIME_ENV_START = '  experimental__runtimeEnv: {'
 const RUNTIME_ENV_END = '  },\n  emptyStringAsUndefined: true,'
+const DEPLOYMENT_METADATA_START = 'export const deploymentEnvMetadata = {'
+const DEPLOYMENT_METADATA_END = '} satisfies Partial<Record<string, DeploymentEnvMetadata>>'
 
 const COMMENT_START = '/**'
 const COMMENT_END = '*/'
@@ -52,6 +61,8 @@ const DATASET_PATTERN = /getRuntimeEnvFromBody\('([^']+)'\)/
 const DEFAULT_PATTERN = /\.default\(([^)]*)\)/
 const ENUM_PATTERN = /z\.enum\(\[(.+?)\]\)/
 const STRING_LITERAL_PATTERN = /^(['"])(.*)\1$/
+const DEPLOYMENT_ENTRY_PATTERN = /^\s*([A-Z][A-Z0-9_]+):\s*\{\s*$/
+const DEPLOYMENT_VALUE_PATTERN = /^\s*(main_example|middleware_example):\s*'(required|omit)',?\s*$/
 
 /**
  * @param {string} source
@@ -229,11 +240,64 @@ function inferRequired(expression) {
 }
 
 /**
+ * @param {Partial<FrontendDeploymentReference> | undefined} value
+ * @returns {FrontendDeploymentReference}
+ */
+function withDeploymentDefaults(value) {
+  return {
+    main_example: value?.main_example || 'omit',
+    middleware_example: value?.middleware_example || 'omit',
+  }
+}
+
+/**
+ * @param {string} block
+ */
+function parseDeploymentMetadata(block) {
+  /** @type {Map<string, FrontendDeploymentReference>} */
+  const metadata = new Map()
+  /** @type {string | null} */
+  let currentName = null
+  /** @type {Partial<FrontendDeploymentReference>} */
+  let currentValue = {}
+
+  for (const line of block.split('\n')) {
+    const trimmedLine = line.trim()
+    if (!trimmedLine)
+      continue
+
+    if (!currentName) {
+      const entryMatch = line.match(DEPLOYMENT_ENTRY_PATTERN)
+      if (entryMatch) {
+        currentName = entryMatch[1]
+        currentValue = {}
+      }
+      continue
+    }
+
+    const valueMatch = line.match(DEPLOYMENT_VALUE_PATTERN)
+    if (valueMatch) {
+      currentValue[valueMatch[1]] = valueMatch[2]
+      continue
+    }
+
+    if (trimmedLine === '},' || trimmedLine === '}') {
+      metadata.set(currentName, withDeploymentDefaults(currentValue))
+      currentName = null
+      currentValue = {}
+    }
+  }
+
+  return metadata
+}
+
+/**
  * @param {ReturnType<typeof parseSchemaEntries>[number]} entry
  * @param {Map<string, string>} datasetKeys
+ * @param {Map<string, FrontendDeploymentReference>} deploymentMetadata
  * @returns {FrontendEnvVariableReference}
  */
-function toClientVariable(entry, datasetKeys) {
+function toClientVariable(entry, datasetKeys, deploymentMetadata) {
   return {
     name: entry.name,
     accepted_names: [entry.name],
@@ -245,14 +309,16 @@ function toClientVariable(entry, datasetKeys) {
     required: inferRequired(entry.expression),
     injection_mode: 'body-dataset',
     dataset_key: datasetKeys.get(entry.name) || null,
+    deployment: withDeploymentDefaults(deploymentMetadata.get(entry.name)),
   }
 }
 
 /**
  * @param {ReturnType<typeof parseSchemaEntries>[number]} entry
+ * @param {Map<string, FrontendDeploymentReference>} deploymentMetadata
  * @returns {FrontendEnvVariableReference}
  */
-function toServerVariable(entry) {
+function toServerVariable(entry, deploymentMetadata) {
   return {
     name: entry.name,
     accepted_names: [entry.name],
@@ -264,6 +330,7 @@ function toServerVariable(entry) {
     required: inferRequired(entry.expression),
     injection_mode: 'process-env',
     dataset_key: null,
+    deployment: withDeploymentDefaults(deploymentMetadata.get(entry.name)),
   }
 }
 
@@ -342,9 +409,10 @@ export function buildFrontendEnvReference() {
   const clientEntries = parseSchemaEntries(extractBlock(source, CLIENT_SCHEMA_START, CLIENT_SCHEMA_END))
   const serverEntries = parseSchemaEntries(extractBlock(source, SERVER_SCHEMA_START, SERVER_SCHEMA_END))
   const datasetKeys = parseRuntimeDatasetKeys(extractBlock(source, RUNTIME_ENV_START, RUNTIME_ENV_END))
+  const deploymentMetadata = parseDeploymentMetadata(extractBlock(source, DEPLOYMENT_METADATA_START, DEPLOYMENT_METADATA_END))
 
   return {
-    schema_version: '1',
+    schema_version: '2',
     artifact_policy: 'committed-generated-artifact',
     authority: {
       kind: 'frontend-env-schema',
@@ -352,8 +420,8 @@ export function buildFrontendEnvReference() {
       model: 'web/env.ts',
     },
     variables: [
-      ...clientEntries.map(entry => toClientVariable(entry, datasetKeys)),
-      ...serverEntries.map(toServerVariable),
+      ...clientEntries.map(entry => toClientVariable(entry, datasetKeys, deploymentMetadata)),
+      ...serverEntries.map(entry => toServerVariable(entry, deploymentMetadata)),
     ],
   }
 }

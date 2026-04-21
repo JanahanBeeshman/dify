@@ -7,6 +7,11 @@ import { ObjectFromEntries, ObjectKeys } from './utils/object'
 
 const CLIENT_ENV_PREFIX = 'NEXT_PUBLIC_'
 type ClientSchema = Record<`${typeof CLIENT_ENV_PREFIX}${string}`, z.ZodType>
+type DeploymentExampleMode = 'required' | 'omit'
+type DeploymentEnvMetadata = {
+  main_example?: DeploymentExampleMode
+  middleware_example?: DeploymentExampleMode
+}
 
 const coercedBoolean = z.string()
   .refine(s => s === 'true' || s === 'false' || s === '0' || s === '1')
@@ -139,6 +144,9 @@ const clientSchema = {
   NEXT_PUBLIC_ZENDESK_FIELD_ID_WORKSPACE_ID: z.string().optional(),
   NEXT_PUBLIC_ZENDESK_WIDGET_KEY: z.string().optional(),
 } satisfies ClientSchema
+
+export const deploymentEnvMetadata = {
+} satisfies Partial<Record<string, DeploymentEnvMetadata>>
 
 export const env = createEnv({
   server: {
